@@ -26,7 +26,7 @@ Ubuntu 20.04
 
 ## Exp-5 File System
 
-感受一下 Linux 下的文件链接机制~~，没啥意义~~
+感受一下 Linux 下的文件链接机制，~~没啥意义~~
 
 ## Exp-6 Research of Linux
 
