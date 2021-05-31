@@ -36,6 +36,6 @@ Ubuntu 20.04
 
 ## Exp-7 Compile the Linux Kernel
 
-大概是编译 Linux 内核然后给笔者的小破机子换上去~~，然后自己写一个114514号系统调用每次调用都会在内核缓冲区输出哼哼啊啊啊啊啊啊啊啊啊啊~~
+大概是编译 Linux 内核然后给笔者的小破机子换上去，~~然后自己写一个114514号系统调用每次调用都会在内核缓冲区输出哼哼啊啊啊啊啊啊啊啊啊啊~~
 
 参见[Linux Kernel 简易食用指南 - arttnba3's blog](https://arttnba3.cn/2021/02/21/NOTE-0X02-LINUX-KERNEL-PWN-PART-I/) 
