@@ -18,7 +18,7 @@ Ubuntu 20.04
 
 ## Exp-2 Muitiprocess Programming - Linux Shell
 
-手写一个 `shell` ，代码可以直接参见 [a3shell](https://github.com/arttnba3/a3shell) ，详细说明可以参见 [Linux Kernel 简易食用指南 - 编写自己的shell - arttnba3's blog](https://arttnba3.cn/2021/02/21/NOTE-0X02-LINUX-KERNEL-PWN-PART-I/#七、编写自己的shell) 
+手写一个 `shell` ，代码可以直接参见 [a3shell](https://github.com/arttnba3/a3shell) ，详细说明可以参见 [Linux Kernel 简易食用指南 - 编写自己的shell - arttnba3's blog](https://arttnba3.cn/2021/02/21/OS-0X01-LINUX-KERNEL-PART-II/#0x06-%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84shell) 
 
 目前而言 `1.0` 版只需要 glibc， `1.1` 版需要 `lreadline` 库，但是支持 tab 补全，打算有时间优化一哈（下次一定）
 
