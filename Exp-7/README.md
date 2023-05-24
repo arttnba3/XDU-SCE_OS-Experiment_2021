@@ -32,7 +32,7 @@
 
 ```shell
 $ sudo apt-get update
-$ sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils qemu flex libncurses5-dev fakeroot build-essential ncurses-dev xz-utils libssl-dev bc bison libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libelf-dev
+$ sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils qemu flex libncurses5-dev fakeroot ncurses-dev xz-utils libssl-dev bc bison libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libelf-dev
 ```
 
 ### 一、获取内核镜像（bzImage）
@@ -79,39 +79,38 @@ $ make menuconfig
 运行如下命令开始编译，生成内核镜像
 
 ```shell
-$ make bzImage
+$ make -j$(nproc) bzImage
 ```
 
-> 可以使用make bzImage -j4加速编译
+> > 直接 `make -j$(nproc)` 也行，但是会额外编译出很多你可能不一定需要的东西
 >
 > 笔者机器比较烂，大概要等一顿饭的时间...
 >
 > 以及编译内核会比较需要空间，一定要保证磁盘剩余空间充足
->
-> ##### 可能出现的错误
->
-> 笔者在编译 4.4 版本的内核时出现了如下错误：
->
-> ```shell
-> cc1: error: code model kernel does not support PIC mode
-> ```
->
-> ```shell
-> make[1]: *** No rule to make target 'debian/canonical-certs.pem', needed by 'certs/x509_certificate_list'.  Stop
-> ```
->
-> 这个时候只需要在Makefile文件中：
->
-> - `KBUILD_CFLAGS` 的尾部添加选项 `-fno-pie`
-> - `CC_USING_FENTRY` 项添加 `-fno-pic`
->
-> 以及在 `.config` 文件中找到这一项，等于号后面的值改为 `""`
->
-> ![image.png](https://i.loli.net/2021/04/08/kSBi5yhprCjqnfv.png)
->
-> 最后又出现了一个错误...笔者实在忍不了了，换到Ubuntu 16进行编译...一遍过...
->
-> 出现这种情况的原因主要是高版本的 gcc 更改了内部的一些相关机制，~~只需要切换回老版本gcc即可正常编译~~
+
+### IV.可能出现的错误
+
+笔者编译时出现过这个错误：
+
+```shell
+make[1]: *** No rule to make target 'debian/canonical-certs.pem', needed by 'certs/x509_certificate_list'.  Stop
+```
+
+只需要在 `.config` 文件中找到 `CONFIG_SYSTEM_TRUSTED_KEYS`，等于号后面的值改为 `""`
+
+![image.png](https://i.loli.net/2021/04/08/kSBi5yhprCjqnfv.png)
+
+笔者还遇到过这个错误：
+
+```shell
+make[1]: *** No rule to make target 'debian/canonical-revoked-certs.pem', needed by 'certs/x509_revocation_list'.  Stop.
+```
+
+这时需要在 `.config` 文件中将 `CONFIG_SYSTEM_REVOCATION_KEYS` 项等号后面的值改为 `""`
+
+![image.png](https://s2.loli.net/2022/02/15/CNogw1mDtyFlUJY.png)
+
+### V.编译结果
 
 完成之后会出现如下信息：
 
